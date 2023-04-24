@@ -1,4 +1,6 @@
 class PhotosController < ApplicationController
+  skip_before_action(:force_user_sign_in, { :only => [:index] })
+
   def index
     matching_photos = Photo.all
 
@@ -13,6 +15,8 @@ class PhotosController < ApplicationController
     matching_photos = Photo.where({ :id => the_id })
 
     @the_photo = matching_photos.at(0)
+
+    @the_like = Like.where({ :fan_id => @current_user.id, :photo_id => @the_photo.id}).first
 
     render({ :template => "photos/show.html.erb" })
   end

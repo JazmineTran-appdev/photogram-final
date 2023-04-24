@@ -35,9 +35,14 @@
         </td>
       <% end %>
 
+      <% if @current_user != nil %>
       <td>
-
+        Follow here
       </td>
+      <% else %>
+        <td>
+        </td>
+      <% end %>
 
       <td>
         <a href="/users/<%= a_user.username %>">Show details</a>
