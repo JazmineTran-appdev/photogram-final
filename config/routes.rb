@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   get("/users", { :controller => "users", :action => "index" })
 
+  get("/users/:path_id", { :controller => "users", :action => "show"})
+
   # CREATE
   post("/insert_comment", { :controller => "comments", :action => "create" })
           
