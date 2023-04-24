@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_21_171230) do
+ActiveRecord::Schema.define(version: 2023_04_24_162951) do
 
   create_table "comments", force: :cascade do |t|
     t.text "body"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 2023_04_21_171230) do
     t.boolean "private"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "photos_count"
   end
 
 end

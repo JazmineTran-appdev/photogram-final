@@ -6,12 +6,6 @@
 
   <dt>Followers</dt>
   <dd><%= @the_user.followers.count %>
-
-    <% if @current_user.id == @the_user.id %>
-      <div>
-        <h4>Pending follow requests</h4>
-      </div>
-    <% end %>
   </dd>
 
   <dt>Following</dt>
@@ -38,7 +32,7 @@
   </ul>
 </nav>
 
-<h2>Own photos (<%= @the_user.own_photos.count %>)</h2>
+<h2>Discover (<%= @the_user.activity.count %>)</h2>
 
 <table border="1">
   <tr>
@@ -66,7 +60,7 @@
     </th>
   </tr>
 
-  <% @the_user.own_photos.each do |photo| %>
+  <% @the_user.activity.each do |photo| %>
     <tr>
       <td>
         <%= photo.image %>
@@ -89,7 +83,7 @@
       </td>
 
       <td>
-        <a href="/photos/<%= photo.id %>">Show details</a>
+        <a href="/">Show details</a>
       </td>
     </tr>
   <% end %>
