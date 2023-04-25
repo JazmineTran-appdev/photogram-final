@@ -35,12 +35,20 @@
         </td>
       <% end %>
 
-      <% if @current_user != nil %>
-      <td>
-        Follow here
-      </td>
+      <% if @current_user !=nil %>
+        <% zebra = FollowRequest.where({ :recipient_id => a_user.id }).first %>
+        <% if zebra.status == "pending" %>
+          <td>
+            pending
+          </td>
+        <% else %>
+          <td>
+            go back
+          </td>
+        <% end %>
       <% else %>
         <td>
+          
         </td>
       <% end %>
 
