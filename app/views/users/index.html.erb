@@ -20,7 +20,6 @@
   </tr>
 
   <% @list_of_users.each do |a_user| %>
-    <% my_id = @current_user.id %>
     <tr>
       <td>
         <%= a_user.username %>
@@ -39,7 +38,7 @@
       <% if @current_user != nil %>
       <td>
         <% f = FollowRequest.where({ :recipient_id => a_user.id }) %>
-        <% m = f.where({ :sender_id => my_id }).first %>
+        <% m = f.where({ :sender_id => @current_user.id }).first %>
 
         <% if m != nil %>
           <% if m.status == "accepted" %>
