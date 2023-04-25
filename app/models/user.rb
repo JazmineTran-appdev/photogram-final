@@ -18,7 +18,6 @@ class User < ApplicationRecord
   validates :email, :presence => true
   validates(:username, { :presence => true })
   validates(:username, { :uniqueness => true })
-  validates(:status, { :presence => true })
 
   has_secure_password
 
