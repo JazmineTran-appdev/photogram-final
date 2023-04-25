@@ -43,9 +43,9 @@
 
         <% if m != nil %>
           <% if m.status == "accepted" %>
-            <a href="/">Unfollow</a>
+            <a href="/delete_follow_request/<%= a_user.id %>">Unfollow</a>
           <% elsif m.status == "pending" %>
-            Request sent. <a href="/delete_follow_request/<%=  %>">Cancel</a>
+            Request sent. <a href="/delete_follow_request/<%= a_user.id %>">Cancel</a>
           <% end %>
         <% else %>
           <form action="/insert_follow_request" method="post">
