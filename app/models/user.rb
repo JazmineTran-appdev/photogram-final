@@ -18,6 +18,7 @@ class User < ApplicationRecord
   validates :email, :presence => true
   validates(:username, { :presence => true })
   validates(:username, { :uniqueness => true })
+  validates(:status, { :presence => true })
 
   has_secure_password
 
@@ -34,4 +35,5 @@ class User < ApplicationRecord
   has_many(:liked_photos, { :through => :likes, :source => :photo })
   has_many(:feed, { :through => :following, :source => :own_photos })
   has_many(:activity, { :through => :following, :source => :liked_photos })
+
 end
