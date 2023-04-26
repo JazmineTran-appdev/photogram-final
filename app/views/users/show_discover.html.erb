@@ -61,30 +61,63 @@
   </tr>
 
   <% @the_user.activity.each do |photo| %>
-    <tr>
-      <td>
-        <%= photo.image %>
-      </td>
+    <% matching_request = FollowRequest.where({ :recipient_id => photo.owner.id, :sender_id => @the_user.id }).first %>
+    <% if photo.owner.private? %>
+      <% if matching_request != nil%>
+        <% if matching_request.status == "accepted" %>
+          <tr>
+            <td>
+              <img src="<%= photo.image %>">
+            </td>
 
-      <td>
-        <%= photo.owner.username %>
-      </td>
+            <td>
+              <%= photo.owner.username %>
+            </td>
 
-      <td>
-        <%= photo.caption %>
-      </td>
+            <td>
+              <%= photo.caption %>
+            </td>
 
-      <td>
-        <%= time_ago_in_words(photo.created_at) %> ago
-      </td>
+            <td>
+              <%= time_ago_in_words(photo.created_at) %> ago
+            </td>
 
-      <td>
-        <%= photo.likes_count %>
-      </td>
+            <td>
+              <%= photo.likes_count %>
+            </td>
 
-      <td>
-        <a href="/photos/<%= photo.id %>">Show details</a>
-      </td>
-    </tr>
+            <td>
+              <a href="/photos/<%= photo.id %>">Show details</a>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    <% else %>
+      <tr>
+        <td>
+          <img src="<%= photo.image %>">
+        </td>
+
+        <td>
+          <%= photo.owner.username %>
+        </td>
+
+        <td>
+          <%= photo.caption %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(photo.created_at) %> ago
+        </td>
+
+        <td>
+          <%= photo.likes_count %>
+        </td>
+
+        <td>
+          <a href="/photos/<%= photo.id %>">Show details</a>
+        </td>
+      </tr>
+    <% end %>
   <% end %>
 </table>
